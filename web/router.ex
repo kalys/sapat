@@ -20,7 +20,10 @@ defmodule Sapat.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Sapat do
-  #   pipe_through :api
-  # end
+  scope "/api", Sapat do
+    pipe_through :api
+
+    resources "/reports", ReportController, only: [:create, :show]
+
+  end
 end
