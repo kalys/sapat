@@ -23,7 +23,7 @@ defmodule Sapat.Router do
   scope "/api", Sapat do
     pipe_through :api
 
-    resources "/reports", ReportController, only: [:create, :show]
+    resources "/reports", ReportController, only: [:index, :create, :show]
 
   end
 end

@@ -5,6 +5,7 @@ defmodule Sapat.Report do
     field :description, :string
     field :lat, :float
     field :lng, :float
+    has_many :photos, Sapat.Photo
 
     timestamps()
   end

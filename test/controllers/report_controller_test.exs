@@ -9,10 +9,11 @@ defmodule Sapat.ReportControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  # test "lists all entries on index", %{conn: conn} do
-  #   conn = get conn, report_path(conn, :index)
-  #   assert json_response(conn, 200)["data"] == []
-  # end
+  test "lists all entries on index", %{conn: conn} do
+    Forge.saved_report_list 5
+    conn = get conn, report_path(conn, :index)
+    assert length(json_response(conn, 200)["data"]) == 5
+  end
 
   # test "shows chosen resource", %{conn: conn} do
   #   report = Repo.insert! %Report{}

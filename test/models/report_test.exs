@@ -21,4 +21,13 @@ defmodule Sapat.ReportTest do
     changeset = Report.changeset(%Report{}, @uncomplete_attrs)
     refute changeset.valid?
   end
+
+  test "has_many photos association" do
+    {:ok, report} = Forge.saved_report
+    Forge.saved_photo_list 3, report: report
+
+    # actual_report = Repo.get!(Report, report.id, preload: )
+    actual_report = Report |> preload(:photos) |> first |> Repo.one
+    assert length(actual_report.photos) == 3
+  end
 end
