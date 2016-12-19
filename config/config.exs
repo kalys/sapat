@@ -27,4 +27,4 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :arc,
-  storage: Arc.Storage.Local
+  storage: Arc.Storage.S3
