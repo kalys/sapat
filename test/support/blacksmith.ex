@@ -23,7 +23,7 @@ defmodule Forge do
   }
 
   register :photo, %Photo{
-    photo: "some url",
+    photo: %{file_name: "kesha.png", updated_at: nil},
     report: Forge.saved_report
   }
 end

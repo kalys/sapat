@@ -15,6 +15,18 @@ defmodule Sapat.ReportControllerTest do
     assert length(json_response(conn, 200)["data"]) == 5
   end
 
+  test "creates and renders resource when data is valid", %{conn: conn} do
+    conn = post conn, report_path(conn, :create), report: @valid_attrs
+
+    assert json_response(conn, 201)["data"]["id"]
+    assert Repo.get_by(Report, @valid_attrs)
+  end
+
+  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+    conn = post conn, report_path(conn, :create), report: @invalid_attrs
+    assert json_response(conn, 422)["errors"] != %{}
+  end
+
   # test "shows chosen resource", %{conn: conn} do
   #   report = Repo.insert! %Report{}
   #   conn = get conn, report_path(conn, :show, report)
@@ -29,18 +41,6 @@ defmodule Sapat.ReportControllerTest do
   #     get conn, report_path(conn, :show, -1)
   #   end
   # end
-
-  test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, report_path(conn, :create), report: @valid_attrs
-
-    assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(Report, @valid_attrs)
-  end
-
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, report_path(conn, :create), report: @invalid_attrs
-    assert json_response(conn, 422)["errors"] != %{}
-  end
 
   # test "updates and renders chosen resource when data is valid", %{conn: conn} do
   #   report = Repo.insert! %Report{}

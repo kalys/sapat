@@ -17,7 +17,6 @@ defmodule Sapat.PhotosControllerTest do
 
     json = json_response(conn, 201)
 
-    IO.inspect json
     assert json["data"]["id"]
     assert json["data"]["photo_url"]
     assert photo
@@ -26,7 +25,7 @@ defmodule Sapat.PhotosControllerTest do
     photos = Photo |> Repo.all
 
     for photo <- photos do
-      # Sapat.PhotoUploader.delete({photo.photo.file_name, photo})
+      Sapat.PhotoUploader.delete({photo.photo.file_name, photo})
     end
 
   end
