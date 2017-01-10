@@ -24,7 +24,7 @@ defmodule Sapat.Mixfile do
   defp applications(:test), do: applications(:all) ++ [:blacksmith]
   defp applications(_all),  do: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
                     :gettext, :phoenix_ecto, :postgrex, :arc_ecto,
-                    :ex_aws, :hackney, :poison]
+                    :ex_aws, :hackney, :poison, :comeonin]
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
@@ -48,7 +48,8 @@ defmodule Sapat.Mixfile do
      {:ex_aws, "~> 1.0.0-rc3"},
      {:hackney, "~> 1.5"},
      {:poison, "~> 2.0"},
-     {:sweet_xml, "~> 0.5"}
+     {:sweet_xml, "~> 0.5"},
+     {:comeonin, "~> 3.0"}
    ]
   end
 

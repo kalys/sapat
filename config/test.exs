@@ -26,3 +26,7 @@ config :ex_aws,
   access_key_id: ["AKIAJ3J4FGMBETKPFVOA", :instance_role],
   secret_access_key: ["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", :instance_role],
   region: "eu-central-1"
+
+# disable encryption for faster tests
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

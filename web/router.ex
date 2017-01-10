@@ -23,6 +23,8 @@ defmodule Sapat.Router do
   scope "/api", Sapat do
     pipe_through :api
 
+    resources "/users", UserController, only: [:create]
+
     resources "/reports", ReportController, only: [:index, :create, :show] do
       resources "/photos", PhotosController, only: [:create]
     end
