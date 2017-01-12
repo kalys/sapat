@@ -49,7 +49,8 @@ defmodule Sapat.Mixfile do
      {:hackney, "~> 1.5"},
      {:poison, "~> 2.0"},
      {:sweet_xml, "~> 0.5"},
-     {:comeonin, "~> 3.0"}
+     {:comeonin, "~> 3.0"},
+     {:secure_random, "~> 0.5"}
    ]
   end
 
