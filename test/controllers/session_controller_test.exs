@@ -29,4 +29,22 @@ defmodule Sapat.SessionControllerTest do
     assert json_response(conn, 401)["errors"] != %{}
   end
 
+  test "renders requested resources when user is authenticated", %{conn: conn} do
+    {:ok, another_user} = Forge.saved_user email: "koko@koko.com"
+    Forge.saved_report user: another_user
+
+    user = Repo.get_by(User, email: "foo@bar.com")
+    Forge.saved_report user: user
+
+    {:ok, session} = Forge.saved_session user: user
+
+    conn = put_req_header conn, "x-auth", "Token: " <> session.token
+    conn = get conn, report_path(conn, :my_reports)
+    data = json_response(conn, 200)["data"]
+    assert length(data) == 1
+  end
+
+  test "renders error when user is not authenticated", %{conn: _conn} do
+  end
+
 end

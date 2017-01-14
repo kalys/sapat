@@ -16,6 +16,10 @@ defmodule Sapat.ReportControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
+    {:ok, user} = Forge.saved_user
+    {:ok, session} = Forge.saved_session user: user
+    conn = put_req_header conn, "x-auth", "Token: " <> session.token
+
     conn = post conn, report_path(conn, :create), report: @valid_attrs
 
     assert json_response(conn, 201)["data"]["id"]
@@ -23,6 +27,9 @@ defmodule Sapat.ReportControllerTest do
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+    {:ok, user} = Forge.saved_user
+    {:ok, session} = Forge.saved_session user: user
+    conn = put_req_header conn, "x-auth", "Token: " <> session.token
     conn = post conn, report_path(conn, :create), report: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end

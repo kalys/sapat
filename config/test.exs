@@ -19,13 +19,7 @@ config :sapat, Sapat.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :arc,
-  bucket: "sapat-test",
-  asset_host: "https://s3.eu-central-1.amazonaws.com/sapat-test"
-
-config :ex_aws,
-  access_key_id: ["AKIAJ3J4FGMBETKPFVOA", :instance_role],
-  secret_access_key: ["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", :instance_role],
-  region: "eu-central-1"
+  storage: Arc.Storage.Local
 
 # disable encryption for faster tests
 config :comeonin, :bcrypt_log_rounds, 4

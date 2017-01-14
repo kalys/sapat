@@ -2,8 +2,6 @@ defmodule Sapat.PhotoUploader do
   use Arc.Definition
   use Arc.Ecto.Definition
 
-  # @versions [:original]
-
   # To add a thumbnail version:
   @versions [:original, :thumb]
 
@@ -29,6 +27,9 @@ defmodule Sapat.PhotoUploader do
     {:ok, uuid} = Ecto.UUID.load(scope.uuid)
     "uploads/report_photos/#{uuid}/#{version}"
   end
+
+  # Set storage
+  def __storage, do: Application.get_env(:arc, :storage)
 
   # Provide a default URL if there hasn't been a file uploaded
   # def default_url(version, scope) do

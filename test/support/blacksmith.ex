@@ -12,6 +12,8 @@ defmodule Forge do
   use Blacksmith
   alias Sapat.Report
   alias Sapat.Photo
+  alias Sapat.User
+  alias Sapat.Session
 
   @save_one_function &Blacksmith.Config.save/1
   @save_all_function &Blacksmith.Config.save_all/1
@@ -25,5 +27,14 @@ defmodule Forge do
   register :photo, %Photo{
     photo: %{file_name: "kesha.png", updated_at: nil},
     report: Forge.saved_report
+  }
+
+  register :user, %User{
+    email: Sequence.next(:email, &"test#{&1}@example.com"),
+    password: "passwd"
+  }
+
+  register :session, %Session{
+    token: "ololotrololo"
   }
 end

@@ -50,7 +50,8 @@ defmodule Sapat.Mixfile do
      {:poison, "~> 2.0"},
      {:sweet_xml, "~> 0.5"},
      {:comeonin, "~> 3.0"},
-     {:secure_random, "~> 0.5"}
+     {:secure_random, "~> 0.5"},
+     {:mellon, "~> 0.1.1"}
    ]
   end
 

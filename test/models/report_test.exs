@@ -3,7 +3,7 @@ defmodule Sapat.ReportTest do
 
   alias Sapat.Report
 
-  @valid_attrs %{description: "some content", lat: "120.5", lng: "120.5"}
+  @valid_attrs %{description: "some content", lat: "120.5", lng: "120.5", user_id: "123"}
   @invalid_attrs %{}
   @uncomplete_attrs %{description: "some content"}
 

@@ -38,3 +38,15 @@ config :sapat, Sapat.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "sapat_dev",
   pool_size: 10
+
+config :arc,
+  storage: Arc.Storage.S3
+
+config :arc,
+  bucket: "sapat-dev",
+  asset_host: "https://s3.eu-central-1.amazonaws.com/sapat-dev"
+
+config :ex_aws,
+  access_key_id: ["AKIAJ3J4FGMBETKPFVOA", :instance_role],
+  secret_access_key: ["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", :instance_role],
+  region: "eu-central-1"

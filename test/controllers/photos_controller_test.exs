@@ -11,6 +11,10 @@ defmodule Sapat.PhotosControllerTest do
 
   test "creates and renders resource when data is valid", %{conn: conn} do
     {:ok, report} = Forge.saved_report
+    {:ok, user} = Forge.saved_user
+    {:ok, session} = Forge.saved_session user: user
+
+    conn = put_req_header conn, "x-auth", "Token: " <> session.token
     conn = post conn, report_photos_path(conn, :create, report.id), photo: @valid_attrs
 
     photo = assoc(report, :photos) |> first |> Repo.one

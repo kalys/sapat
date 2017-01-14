@@ -8,8 +8,16 @@ defmodule Sapat.ReportController do
     render(conn, "index.json", reports: reports)
   end
 
+  def my_reports(conn, _params) do
+    current_user_id = conn.assigns[:credentials]
+
+    reports = Repo.all(from r in Report, where: r.user_id == ^current_user_id)
+    render(conn, "index.json", reports: reports)
+  end
+
   def create(conn, %{"report" => report_params}) do
-    changeset = Report.changeset(%Report{}, report_params)
+    user_id = conn.assigns[:credentials]
+    changeset = Report.changeset(%Report{}, Map.put(report_params, "user_id", user_id))
 
     case Repo.insert(changeset) do
       {:ok, report} ->

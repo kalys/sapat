@@ -5,6 +5,8 @@ defmodule Sapat.Report do
     field :description, :string
     field :lat, :float
     field :lng, :float
+
+    belongs_to :user, Sapat.User
     has_many :photos, Sapat.Photo
 
     timestamps()
@@ -15,7 +17,7 @@ defmodule Sapat.Report do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:description, :lat, :lng])
-    |> validate_required([:description, :lat, :lng])
+    |> cast(params, [:user_id, :description, :lat, :lng])
+    |> validate_required([:user_id, :description, :lat, :lng])
   end
 end

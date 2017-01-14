@@ -14,6 +14,7 @@ defmodule Sapat.User do
     |> cast(params, ~w(email), [])
     |> validate_length(:email, min: 1, max: 255)
     |> validate_format(:email, ~r/@/)
+    |> unique_constraint(:email)
   end
 
   def registration_changeset(struct, params \\ %{}) do
