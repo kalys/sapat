@@ -15,16 +15,16 @@ defmodule Sapat.UserCreatesReportTest do
 
   test "user creates a report", %{conn: conn} do
     # sign in
-    token = conn
-            |> post(session_path(conn, :create), user: @valid_user_attrs)
-            |> json_response(201)
+    %{"data" => %{"token" => token}} = conn
+      |> post(session_path(conn, :create), user: @valid_user_attrs)
+      |> json_response(201)
 
     # create a report
-    report_conn = conn
-           |> put_req_header("x-auth", "Token: " <> token)
-           |> post(report_path(conn, :create), report: @valid_reports_attrs)
+    %{"data" => %{"id" => id}} = conn
+      |> put_req_header("x-auth", "Token: " <> token)
+      |> post(report_path(conn, :create), report: @valid_reports_attrs)
+      |> json_response(201)
 
-    assert json_response(report_conn, 201)["data"]["id"]
-    assert Repo.get_by(Report, @valid_reports_attrs)
+    assert Repo.get(Report, id)
   end
 end
