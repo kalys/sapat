@@ -24,3 +24,6 @@ config :arc,
 # disable encryption for faster tests
 config :comeonin, :bcrypt_log_rounds, 4
 config :comeonin, :pbkdf2_rounds, 1
+
+config :phoenix_integration,
+  endpoint: Sapat.Endpoint

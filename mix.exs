@@ -42,7 +42,7 @@ defmodule Sapat.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:blacksmith, "~> 0.1"},
+     {:blacksmith, "~> 0.1", only: :test},
      {:arc, "~> 0.6.0-rc3"},
      {:arc_ecto, "~> 0.5.0-rc1"},
      {:ex_aws, "~> 1.0.0-rc3"},
@@ -51,7 +51,8 @@ defmodule Sapat.Mixfile do
      {:sweet_xml, "~> 0.5"},
      {:comeonin, "~> 3.0"},
      {:secure_random, "~> 0.5"},
-     {:mellon, "~> 0.1.1"}
+     {:mellon, "~> 0.1.1"},
+     {:phoenix_integration, "~> 0.1"}
    ]
   end
 
