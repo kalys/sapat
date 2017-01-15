@@ -1,4 +1,4 @@
-defmodule MyApp.AboutIntegrationTest do
+defmodule Sapat.AboutIntegrationTest do
   use Sapat.IntegrationCase, async: true
 
   alias Sapat.User
